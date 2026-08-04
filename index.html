@@ -1,0 +1,193 @@
+```html
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>اختبار الكاميرا</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background: #f2f2f2;
+            padding: 25px;
+        }
+
+        .box {
+            max-width: 500px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+        }
+
+        video, canvas, #photo {
+            width: 100%;
+            max-width: 400px;
+            border-radius: 10px;
+            margin-top: 15px;
+        }
+
+        button {
+            padding: 12px 20px;
+            margin: 8px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        #start {
+            background: #2196f3;
+            color: white;
+        }
+
+        #capture {
+            background: #4caf50;
+            color: white;
+        }
+
+        #stop {
+            background: #f44336;
+            color: white;
+        }
+
+        #status {
+            margin-top: 15px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="box">
+
+    <h2>اختبار الكاميرا</h2>
+
+    <p>
+        هذا اختبار للكاميرا. يجب السماح للمتصفح باستخدام الكاميرا.
+    </p>
+
+    <video id="video" autoplay playsinline></video>
+
+    <br>
+
+    <button id="start">
+        تشغيل الكاميرا
+    </button>
+
+    <button id="capture">
+        التقاط صورة
+    </button>
+
+    <button id="stop">
+        إيقاف الكاميرا
+    </button>
+
+    <p id="status"></p>
+
+    <canvas id="canvas" hidden></canvas>
+
+    <img id="photo" alt="الصورة الملتقطة" hidden>
+
+</div>
+
+<script>
+
+let stream = null;
+
+const video = document.getElementById("video");
+const canvas = document.getElementById("canvas");
+const photo = document.getElementById("photo");
+const status = document.getElementById("status");
+
+
+// تشغيل الكاميرا
+document.getElementById("start").onclick = async function () {
+
+    try {
+
+        stream = await navigator.mediaDevices.getUserMedia({
+            video: {
+                facingMode: "user"
+            },
+            audio: false
+        });
+
+        video.srcObject = stream;
+
+        status.textContent = "تم تشغيل الكاميرا بنجاح.";
+
+    } catch (error) {
+
+        console.error(error);
+
+        status.textContent =
+            "لم يتم السماح باستخدام الكاميرا.";
+
+    }
+
+};
+
+
+// التقاط صورة
+document.getElementById("capture").onclick = function () {
+
+    if (!stream) {
+
+        status.textContent =
+            "شغّل الكاميرا أولاً.";
+
+        return;
+    }
+
+    canvas.width = video.videoWidth;
+    canvas.height = video.videoHeight;
+
+    const context = canvas.getContext("2d");
+
+    context.drawImage(
+        video,
+        0,
+        0,
+        canvas.width,
+        canvas.height
+    );
+
+    photo.src = canvas.toDataURL("image/jpeg");
+
+    photo.hidden = false;
+
+    status.textContent =
+        "تم التقاط الصورة.";
+
+};
+
+
+// إيقاف الكاميرا
+document.getElementById("stop").onclick = function () {
+
+    if (stream) {
+
+        stream.getTracks().forEach(
+            track => track.stop()
+        );
+
+        video.srcObject = null;
+
+        stream = null;
+
+        status.textContent =
+            "تم إيقاف الكاميرا.";
+    }
+
+};
+
+</script>
+
+</body>
+</html>
+```
